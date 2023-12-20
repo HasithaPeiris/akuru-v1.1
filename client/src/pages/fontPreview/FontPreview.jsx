@@ -5,18 +5,27 @@ import Alphabet from "../../components/alphabet/Alphabet";
 import Symbols from "../../components/symbols/Sysmbols";
 import Paragraph from "../../components/paragraph/Paragraph";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { publicRequest } from "../../requestMethods";
 
 function FontPreview() {
   const [fontSize, setFontSize] = useState(44);
   const [text, setText] = useState("");
+  const [font, setFont] = useState({});
 
+  // get font name from URL
   const location = useLocation();
   const fontName = location.pathname.split("/")[2];
 
-  const font = useSelector((state) =>
-    state.font.fonts.find((item) => item.name === fontName)
-  );
+  // fetch font from DB
+  useEffect(() => {
+    const getFont = async () => {
+      try {
+        const res = await publicRequest.get("/fonts/" + fontName);
+        setFont(res.data);
+      } catch {}
+    };
+    getFont();
+  }, [fontName]);
 
   const textInputRef = useRef(null);
 

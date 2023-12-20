@@ -4,18 +4,33 @@ export const fontSlice = createSlice({
   name: "font",
   initialState: {
     fonts: [],
+    font: null,
     isFetching: false,
     error: false,
   },
   reducers: {
     //GET ALL FONTS
+    getFontsStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    getFontsSuccess: (state, action) => {
+      state.isFetching = false;
+      state.fonts = action.payload;
+    },
+    getFontsFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+
+    //GET ONE FONT
     getFontStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
     getFontSuccess: (state, action) => {
       state.isFetching = false;
-      state.fonts = action.payload;
+      state.font = action.payload;
     },
     getFontFailure: (state) => {
       state.isFetching = false;
@@ -72,6 +87,9 @@ export const fontSlice = createSlice({
 });
 
 export const {
+  getFontsStart,
+  getFontsSuccess,
+  getFontsFailure,
   getFontStart,
   getFontSuccess,
   getFontFailure,

@@ -1,5 +1,8 @@
 import { publicRequest } from "../../requestMethods";
 import {
+  getFontsStart,
+  getFontsSuccess,
+  getFontsFailure,
   getFontStart,
   getFontSuccess,
   getFontFailure,
@@ -16,9 +19,20 @@ import {
 
 // GET ALL FONTS
 export const getFonts = async (dispatch) => {
-  dispatch(getFontStart());
+  dispatch(getFontsStart());
   try {
     const res = await publicRequest.get("/fonts");
+    dispatch(getFontsSuccess(res.data));
+  } catch (err) {
+    dispatch(getFontsFailure());
+  }
+};
+
+// GET ONE FONT
+export const getFont = async (name, dispatch) => {
+  dispatch(getFontStart());
+  try {
+    const res = await publicRequest.get(`/fonts/${name}`);
     dispatch(getFontSuccess(res.data));
   } catch (err) {
     dispatch(getFontFailure());
