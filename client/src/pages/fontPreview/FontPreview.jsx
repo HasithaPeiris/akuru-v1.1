@@ -6,6 +6,7 @@ import Symbols from "../../components/symbols/Sysmbols";
 import Paragraph from "../../components/paragraph/Paragraph";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../../requestMethods";
+import { downloadFont } from "../../download";
 
 function FontPreview() {
   const [fontSize, setFontSize] = useState(44);
@@ -28,15 +29,6 @@ function FontPreview() {
   }, [fontName]);
 
   const textInputRef = useRef(null);
-
-  const handleDownloadFont = (fontFile, fontName) => {
-    const link = document.createElement("a");
-    link.href = fontFile;
-    link.download = `${fontName.replace(/\s+/g, "-")}.ttf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const handleFontSizeChange = (event) => {
     const newSize = event.target.value;
@@ -73,7 +65,7 @@ function FontPreview() {
 
           <button
             className={styles.downloadButton}
-            onClick={() => handleDownloadFont(font.fontFile, font.family)}
+            onClick={() => downloadFont(font.fontFile, font.family)}
           >
             Download Font
           </button>

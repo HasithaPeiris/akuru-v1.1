@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import fontReducer from "./fontRedux";
+import packReducer from "./packRedux";
 
 import {
   persistStore,
@@ -22,6 +23,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   font: fontReducer,
+  pack: packReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

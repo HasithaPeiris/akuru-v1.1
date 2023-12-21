@@ -1,7 +1,9 @@
 import styles from "./fontsPage.module.css";
 import FontCard from "../../components/fontCard/FontCard";
+import PackCard from "../../components/packCard/PackCard";
 import unicodeConverter from "../unicodeConverter";
 import { getFonts } from "../../redux/apiCalls/fontApiCalls";
+import { getPacks } from "../../redux/apiCalls/packApiCalls";
 import ShowcaseImages from "./showcaseImages";
 import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useRef, useState } from "react";
@@ -14,13 +16,16 @@ function FontsPage() {
   const [textInput, setText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [currentView, setCurrentView] = useState("FONTS");
 
   // fetch fonts from DB
   const dispatch = useDispatch();
   const fonts = useSelector((state) => state.font.fonts);
+  const packs = useSelector((state) => state.pack.packs);
 
   useEffect(() => {
     getFonts(dispatch);
+    getPacks(dispatch);
   }, [dispatch]);
 
   // make reference for input
@@ -29,10 +34,22 @@ function FontsPage() {
   const keys = ["name", "family"];
 
   // fetch and search fonts
+  // const search = (data) => {
+  //   return fonts.filter((font) =>
+  //     keys.some((key) => font[key].toLowerCase().includes(data.toLowerCase()))
+  //   );
+  // };
+
   const search = (data) => {
-    return fonts.filter((font) =>
-      keys.some((key) => font[key].toLowerCase().includes(data.toLowerCase()))
+    const filteredFonts = (fonts || []).filter((font) =>
+      keys.some((key) => font[key]?.toLowerCase().includes(data.toLowerCase()))
     );
+
+    const filteredPacks = (packs || []).filter((pack) =>
+      keys.some((key) => pack[key]?.toLowerCase().includes(data.toLowerCase()))
+    );
+
+    return { fonts: filteredFonts, packs: filteredPacks };
   };
 
   const handleFontSizeChange = (event) => {
@@ -63,10 +80,18 @@ function FontsPage() {
   }, []);
 
   // handle pagination
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = search(query).slice(indexOfFirstItem, indexOfLastItem);
+  // const totalPages = Math.ceil(search(query).length / itemsPerPage);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = search(query).slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(search(query).length / itemsPerPage);
+  const searchedItems = search(query);
+  const currentItems =
+    currentView === "FONTS" ? searchedItems.fonts : searchedItems.packs;
+  const paginatedItems = currentItems.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(currentItems.length / itemsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -78,7 +103,7 @@ function FontsPage() {
         <div className={styles.headerContainer}>
           <div className={styles.headerGroup}>
             <div className={styles.logo}>
-              <img className={styles.logoImg} src="logo2.png" alt="akuru" />
+              <img className={styles.logoImg} src="./logo2.png" alt="akuru" />
             </div>
             <div className={styles.fontsSearch}>
               <input
@@ -125,16 +150,38 @@ function FontsPage() {
           </div>
         </div>
 
-        {currentItems.map((font, index) => (
-          <Link key={index} to={"/fonts/" + font.name}>
-            <FontCard
-              key={index}
-              fontFamily={font.family}
-              textInput={textInput}
-              fontSize={fontSize}
-            />
-          </Link>
-        ))}
+        <div className={styles.switchButtons}>
+          <button
+            className={currentView === "FONTS" ? styles.active : ""}
+            onClick={() => setCurrentView("FONTS")}
+          >
+            FONTS
+          </button>
+          <button
+            className={currentView === "PACKS" ? styles.active : ""}
+            onClick={() => setCurrentView("PACKS")}
+          >
+            PACKS
+          </button>
+        </div>
+
+        {currentView === "FONTS"
+          ? paginatedItems.map((item, index) => (
+              <FontCard
+                key={index}
+                fontName={item.name}
+                textInput={textInput}
+                fontSize={fontSize}
+              />
+            ))
+          : paginatedItems.map((item, index) => (
+              <PackCard
+                key={index}
+                packName={item.name}
+                textInput={textInput}
+                fontSize={fontSize}
+              />
+            ))}
 
         {/* Pagination Controls */}
         <div className={styles.pagination}>

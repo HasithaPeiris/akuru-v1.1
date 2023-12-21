@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const fontRoute = require("./routes/fontRoutes");
+const packRoute = require("./routes/packRoutes");
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use("/api/fonts", fontRoute);
+app.use("/api/packs", packRoute);
 
 // Serve frontend
 if (process.env.NODE_ENV === "production") {
