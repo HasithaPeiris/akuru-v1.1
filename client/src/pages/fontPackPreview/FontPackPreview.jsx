@@ -1,18 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./fontPackPreview.module.css";
 import FontCard from "../../components/fontCard/FontCard";
-import Paragraph from "../../components/paragraph/Paragraph";
 import { publicRequest } from "../../requestMethods";
-import unicodeConverter from "../unicodeConverter";
 import { useLocation } from "react-router-dom";
 import { getFonts } from "../../redux/apiCalls/fontApiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import PackInfo from "../../components/packInfo/PackInfo";
+import InputSection from "../../components/inputSection/InputSection";
 
 function FontPackPreview() {
   const [pack, setPack] = useState({});
   const [fontSize, setFontSize] = useState(24);
   const [textInput, setText] = useState("");
+
+  // receive data from the input section
+  const handleInputChange = (textInput, fontSize) => {
+    setText(textInput);
+    setFontSize(fontSize);
+  };
 
   // fetch fonts from DB
   const dispatch = useDispatch();
@@ -37,36 +42,6 @@ function FontPackPreview() {
     getPack();
   }, [packName]);
 
-  // make reference for input
-  const textInputRef = useRef(null);
-
-  const handleFontSizeChange = (event) => {
-    const newSize = event.target.value;
-    setFontSize(newSize);
-  };
-
-  const handleTextChange = (event) => {
-    const newText = event.target.value;
-    const newConvertedText = unicodeConverter(newText);
-    setText(newConvertedText);
-
-    localStorage.setItem("textInput", newConvertedText);
-    localStorage.setItem("input", newText);
-  };
-
-  // save state of the input
-  useEffect(() => {
-    const savedTextInput = localStorage.getItem("textInput");
-    const savedInput = localStorage.getItem("input");
-    if (savedTextInput) {
-      setText(savedTextInput);
-
-      if (textInputRef.current) {
-        textInputRef.current.value = savedInput;
-      }
-    }
-  }, []);
-
   return (
     <div className={styles.fontPreview}>
       <div className={styles.fontPreviewContainer}>
@@ -76,31 +51,7 @@ function FontPackPreview() {
           <button className={styles.downloadButton}>Download Font</button>
         </div>
 
-        <div className={styles.inputSection}>
-          <div className={styles.inputBox}>
-            <input
-              type="text"
-              className={styles.textInput}
-              id="text-input"
-              placeholder="කැමති දෙයක් ලියන්න..."
-              ref={textInputRef}
-              onChange={handleTextChange}
-            />
-          </div>
-
-          <div className={styles.fontSizeSection}>
-            <span className={styles.fontSizeValue}>{fontSize}px</span>
-            <input
-              type="range"
-              className={styles.fontSize}
-              id="font-size"
-              min="10"
-              max="100"
-              value={fontSize}
-              onChange={handleFontSizeChange}
-            />
-          </div>
-        </div>
+        <InputSection onInputChange={handleInputChange} initialFontSize={24} />
 
         <dev className={styles.bodyContent}>
           <dev className={styles.fonts}>
