@@ -138,6 +138,9 @@
 
 .paragraph {
   flex: 3;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,0 +1,29 @@
+@import "../../globalStyles.module.css";
+
+.packInfoContainer {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.author {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.description {
+  margin: 20px 0;
+  padding: 15px 0;
+  font-family: var(--sinhala-font-family);
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.license {
+  padding: 5px 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+}

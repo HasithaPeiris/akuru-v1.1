@@ -1,34 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./fontPreview.module.css";
-import unicodeConverter from "../unicodeConverter";
-import Alphabet from "../../components/alphabet/Alphabet";
-import Symbols from "../../components/symbols/Sysmbols";
+import styles from "./fontPackPreview.module.css";
+import FontCard from "../../components/fontCard/FontCard";
 import Paragraph from "../../components/paragraph/Paragraph";
-import { useLocation } from "react-router-dom";
 import { publicRequest } from "../../requestMethods";
-import { downloadFont } from "../../download";
+import unicodeConverter from "../unicodeConverter";
+import { useLocation } from "react-router-dom";
+import { getFonts } from "../../redux/apiCalls/fontApiCalls";
+import { useDispatch, useSelector } from "react-redux";
 import PackInfo from "../../components/packInfo/PackInfo";
 
-function FontPreview() {
-  const [fontSize, setFontSize] = useState(44);
-  const [text, setText] = useState("");
-  const [font, setFont] = useState({});
+function FontPackPreview() {
+  const [pack, setPack] = useState({});
+  const [fontSize, setFontSize] = useState(24);
+  const [textInput, setText] = useState("");
 
-  // get font name from URL
+  // fetch fonts from DB
+  const dispatch = useDispatch();
+  const fonts = useSelector((state) => state.font.fonts);
+
+  // get pack name from URL
   const location = useLocation();
-  const fontName = location.pathname.split("/")[2];
+  const packName = location.pathname.split("/")[3];
 
-  // fetch font from DB
   useEffect(() => {
-    const getFont = async () => {
+    getFonts(dispatch);
+  }, [dispatch]);
+
+  // fetch pack from DB
+  useEffect(() => {
+    const getPack = async () => {
       try {
-        const res = await publicRequest.get("/fonts/" + fontName);
-        setFont(res.data);
+        const res = await publicRequest.get("/packs/" + packName);
+        setPack(res.data);
       } catch {}
     };
-    getFont();
-  }, [fontName]);
+    getPack();
+  }, [packName]);
 
+  // make reference for input
   const textInputRef = useRef(null);
 
   const handleFontSizeChange = (event) => {
@@ -45,10 +54,10 @@ function FontPreview() {
     localStorage.setItem("input", newText);
   };
 
+  // save state of the input
   useEffect(() => {
     const savedTextInput = localStorage.getItem("textInput");
     const savedInput = localStorage.getItem("input");
-
     if (savedTextInput) {
       setText(savedTextInput);
 
@@ -62,22 +71,9 @@ function FontPreview() {
     <div className={styles.fontPreview}>
       <div className={styles.fontPreviewContainer}>
         <div className={styles.nameSection}>
-          <span className={styles.fontName}>{font.family}</span>
+          <span className={styles.fontName}>{pack.packName}</span>
 
-          <button
-            className={styles.downloadButton}
-            onClick={() => downloadFont(font.fontFile, font.family)}
-          >
-            Download Font
-          </button>
-        </div>
-
-        <div className={styles.previewBox}>
-          <p
-            style={{ fontSize: `${fontSize}px`, fontFamily: `${font.family}` }}
-          >
-            {text || "leu;s fohla ,shkak'"}
-          </p>
+          <button className={styles.downloadButton}>Download Font</button>
         </div>
 
         <div className={styles.inputSection}>
@@ -107,19 +103,27 @@ function FontPreview() {
         </div>
 
         <dev className={styles.bodyContent}>
-          <dev className={styles.alphabet}>
-            <Alphabet fontFamily={font.family} />
-            <Symbols fontFamily={font.family} />
+          <dev className={styles.fonts}>
+            {pack.fonts &&
+              pack.fonts.map((fontName) => {
+                const font = fonts.find((f) => f.name === fontName);
+                return (
+                  <FontCard
+                    fontName={font.name}
+                    textInput={textInput}
+                    fontSize={fontSize}
+                  />
+                );
+              })}
           </dev>
 
-          <dev className={styles.paragraph}>
-            <Paragraph fontFamily={font.family} />
+          <dev className={styles.info}>
+            <PackInfo name={pack.name} />
           </dev>
         </dev>
-        <PackInfo />
       </div>
     </div>
   );
 }
 
-export default FontPreview;
+export default FontPackPreview;

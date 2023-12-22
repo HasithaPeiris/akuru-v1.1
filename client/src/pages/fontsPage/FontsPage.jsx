@@ -7,7 +7,6 @@ import { getPacks } from "../../redux/apiCalls/packApiCalls";
 import ShowcaseImages from "./showcaseImages";
 import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function FontsPage() {
