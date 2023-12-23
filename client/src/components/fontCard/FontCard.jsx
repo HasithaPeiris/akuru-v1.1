@@ -4,9 +4,11 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { Link } from "react-router-dom";
 import { publicRequest } from "../../requestMethods";
 import { downloadFont } from "../../download";
+import { ClipLoader } from "react-spinners";
 
 function FontCard({ fontName, textInput, fontSize }) {
   const [font, setFont] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // fetch font from DB
   useEffect(() => {
@@ -14,10 +16,23 @@ function FontCard({ fontName, textInput, fontSize }) {
       try {
         const res = await publicRequest.get("/fonts/" + fontName);
         setFont(res.data);
-      } catch {}
+      } catch {
+        // Handle errors if needed
+      } finally {
+        setLoading(false);
+      }
     };
     getFont();
   }, [fontName]);
+
+  // Render loading spinner
+  if (loading) {
+    return (
+      <div style={{ padding: 20 }}>
+        <ClipLoader color="#999" size={24} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.fontCard}>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./packInfo.module.css";
 import { publicRequest } from "../../requestMethods";
+import { ClipLoader } from "react-spinners";
 
 function PackInfo({ name }) {
   const [pack, setPack] = useState({});
   const [font, setFont] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // fetch pack from DB
   useEffect(() => {
@@ -12,7 +14,10 @@ function PackInfo({ name }) {
       try {
         const res = await publicRequest.get("/packs/" + name);
         setPack(res.data);
-      } catch {}
+      } catch {
+      } finally {
+        setLoading(false);
+      }
     };
     getPack();
   }, [name]);
@@ -23,10 +28,22 @@ function PackInfo({ name }) {
       try {
         const res = await publicRequest.get("/fonts/" + name);
         setFont(res.data);
-      } catch {}
+      } catch {
+      } finally {
+        setLoading(false);
+      }
     };
     getFont();
   }, [name]);
+
+  // Render loading spinner
+  if (loading) {
+    return (
+      <div className={styles.loader}>
+        <ClipLoader color="#999" size={24} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.packInfo}>

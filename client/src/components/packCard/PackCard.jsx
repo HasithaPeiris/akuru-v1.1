@@ -3,10 +3,12 @@ import styles from "./packCard.module.css";
 import DownloadIcon from "@mui/icons-material/Download";
 import { publicRequest } from "../../requestMethods";
 import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 function PackCard({ packName, textInput, fontSize }) {
   const [pack, setPack] = useState({});
   const [fontFamily, setFontFamily] = useState("inherit");
+  const [loading, setLoading] = useState(true);
 
   // fetch font from DB
   useEffect(() => {
@@ -22,10 +24,21 @@ function PackCard({ packName, textInput, fontSize }) {
         }
       } catch (error) {
         console.error("Error fetching pack:", error);
+      } finally {
+        setLoading(false);
       }
     };
     getPack();
   }, [packName]);
+
+  // Render loading spinner
+  if (loading) {
+    return (
+      <div style={{ padding: 20 }}>
+        <ClipLoader color="#999" size={24} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.packCard}>

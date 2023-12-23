@@ -7,11 +7,15 @@ import { getFonts } from "../../redux/apiCalls/fontApiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import PackInfo from "../../components/packInfo/PackInfo";
 import InputSection from "../../components/inputSection/InputSection";
+import { ClipLoader } from "react-spinners";
+import JSZip from "jszip";
+import { downloadFontPack } from "../../download";
 
 function FontPackPreview() {
   const [pack, setPack] = useState({});
   const [fontSize, setFontSize] = useState(24);
   const [textInput, setText] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // receive data from the input section
   const handleInputChange = (textInput, fontSize) => {
@@ -37,10 +41,51 @@ function FontPackPreview() {
       try {
         const res = await publicRequest.get("/packs/" + packName);
         setPack(res.data);
-      } catch {}
+      } catch {
+      } finally {
+        setLoading(false);
+      }
     };
     getPack();
   }, [packName]);
+
+  // Font pack download function
+  const handleDownload = async () => {
+    try {
+      const zip = new JSZip();
+
+      for (const fontName of pack.fonts) {
+        const font = fonts.find((f) => f.name === fontName);
+
+        if (font && font.fontFile) {
+          const fontFileName = `${fontName.replace(/\s+/g, "-")}.ttf`;
+          zip.file(fontFileName, font.fontFile, { binary: true });
+        }
+      }
+
+      const content = await zip.generateAsync({ type: "blob" });
+      setLoading(true);
+
+      downloadFontPack(
+        content,
+        `${pack.packName.replace(/\s+/g, "-")}.zip`,
+        () => {
+          setLoading(false);
+        }
+      );
+    } catch (error) {
+      console.error("Error creating font pack:", error);
+    }
+  };
+
+  // Render loading spinner
+  if (loading) {
+    return (
+      <div className={styles.loader}>
+        <ClipLoader color="#999" size={34} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.fontPreview}>
@@ -48,7 +93,9 @@ function FontPackPreview() {
         <div className={styles.nameSection}>
           <span className={styles.fontName}>{pack.packName}</span>
 
-          <button className={styles.downloadButton}>Download Font</button>
+          <button className={styles.downloadButton} onClick={handleDownload}>
+            Download Pack
+          </button>
         </div>
 
         <InputSection onInputChange={handleInputChange} initialFontSize={24} />
