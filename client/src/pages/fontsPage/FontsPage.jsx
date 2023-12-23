@@ -8,6 +8,7 @@ import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputSection from "../../components/inputSection/InputSection";
+import { ClipLoader } from "react-spinners";
 
 function FontsPage() {
   const [query, setQuery] = useState("");
@@ -16,6 +17,7 @@ function FontsPage() {
   const [currentView, setCurrentView] = useState("FONTS");
   const [textInput, setTextInput] = useState("");
   const [fontSize, setFontSize] = useState(32);
+  const [loading, setLoading] = useState(true);
 
   // receive data from the input section
   const handleInputChange = (textInput, fontSize) => {
@@ -29,8 +31,22 @@ function FontsPage() {
   const packs = useSelector((state) => state.pack.packs);
 
   useEffect(() => {
-    getFonts(dispatch);
-    getPacks(dispatch);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        await getFonts(dispatch);
+        await getPacks(dispatch);
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
 
   // search function
@@ -60,6 +76,15 @@ function FontsPage() {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  // Render loading spinner
+  if (loading) {
+    return (
+      <div className={styles.loader}>
+        <ClipLoader color="#999" size={34} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.fontsPage}>
