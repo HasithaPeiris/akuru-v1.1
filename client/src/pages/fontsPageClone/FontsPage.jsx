@@ -18,6 +18,7 @@ function FontsPage() {
   const [textInput, setTextInput] = useState("");
   const [fontSize, setFontSize] = useState(32);
   const [loading, setLoading] = useState(true);
+  const [filterType, setFilterType] = useState("unicode");
 
   // receive data from the input section
   const handleInputChange = (textInput, fontSize) => {
@@ -54,14 +55,27 @@ function FontsPage() {
 
   const search = (data) => {
     const filteredFonts = (fonts || []).filter((font) =>
-      keys.some((key) => font[key]?.toLowerCase().includes(data.toLowerCase()))
+      keys.some(
+        (key) =>
+          font[key]?.toLowerCase().includes(data.toLowerCase()) &&
+          (filterType ? font.fontType === filterType : true)
+      )
     );
 
     const filteredPacks = (packs || []).filter((pack) =>
-      keys.some((key) => pack[key]?.toLowerCase().includes(data.toLowerCase()))
+      keys.some(
+        (key) =>
+          pack[key]?.toLowerCase().includes(data.toLowerCase()) &&
+          (filterType ? pack.packType === filterType : true)
+      )
     );
 
     return { fonts: filteredFonts, packs: filteredPacks };
+  };
+
+  const handleFilterButtonClick = (type) => {
+    setFilterType(type);
+    setCurrentPage(1);
   };
 
   // pagination function
@@ -112,7 +126,11 @@ function FontsPage() {
       </div>
 
       <div className={styles.fontsPageContainer}>
-        <InputSection onInputChange={handleInputChange} initialFontSize={32} />
+        <InputSection
+          onInputChange={handleInputChange}
+          initialFontSize={32}
+          filterType={filterType}
+        />
 
         <div className={styles.switchButtons}>
           <div className={styles.packButtons}>
@@ -131,8 +149,18 @@ function FontsPage() {
           </div>
 
           <div className={styles.filterButtons}>
-            <button>UNICODE</button>
-            <button>LEGACY</button>
+            <button
+              className={filterType === "unicode" ? styles.active : ""}
+              onClick={() => handleFilterButtonClick("unicode")}
+            >
+              UNICODE
+            </button>
+            <button
+              className={filterType === "legacy" ? styles.active : ""}
+              onClick={() => handleFilterButtonClick("legacy")}
+            >
+              LEGACY
+            </button>
           </div>
         </div>
 

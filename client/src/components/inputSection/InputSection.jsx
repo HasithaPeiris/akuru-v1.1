@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import unicodeConverter from "./unicodeConverter";
+import singlishToUnicode from "./singlishToUnicode";
 import styles from "./inputSection.module.css";
 
-function InputSection({ onInputChange, initialFontSize }) {
+function InputSection({ onInputChange, initialFontSize, filterType }) {
   const [fontSize, setFontSize] = useState(initialFontSize || 32);
   const [textInput, setText] = useState("");
 
@@ -27,9 +28,30 @@ function InputSection({ onInputChange, initialFontSize }) {
   };
 
   // input section - handle input
+  // const handleTextChange = (event) => {
+  //   const newText = event.target.value;
+  //   const newConvertedText = unicodeConverter(newText);
+  //   setText(newConvertedText);
+
+  //   // Batch the storage calls
+  //   saveToLocalStorage(newConvertedText, newText);
+
+  //   // Notify the parent component about the textInput change
+  //   if (onInputChange) {
+  //     onInputChange(newConvertedText, fontSize);
+  //   }
+  // };
+
   const handleTextChange = (event) => {
     const newText = event.target.value;
-    const newConvertedText = unicodeConverter(newText);
+    let newConvertedText;
+
+    if (filterType === "unicode") {
+      newConvertedText = unicodeConverter(newText);
+    } else {
+      newConvertedText = singlishToUnicode(newText);
+    }
+
     setText(newConvertedText);
 
     // Batch the storage calls

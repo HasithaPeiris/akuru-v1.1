@@ -39,16 +39,29 @@ function FontCard({ fontName, textInput, fontSize }) {
       <Link to={"/fonts/" + font.name}>
         <div className={styles.fontCardContainer}>
           <span className={styles.fontName}>{font.family}</span>
-          <div className={styles.fontPreview}>
-            <span
-              style={{
-                fontSize: `${fontSize}px`,
-                fontFamily: `${font.family}`,
-              }}
-            >
-              {textInput || "leu;s fohla ,shkak'"}
-            </span>
-          </div>
+          {font.fontType === "unicode" ? (
+            <div className={styles.fontPreview}>
+              <span
+                style={{
+                  fontSize: `${fontSize}px`,
+                  fontFamily: `${font.family}`,
+                }}
+              >
+                {textInput || "leu;s fohla ,shkak'"}
+              </span>
+            </div>
+          ) : (
+            <div className={styles.fontPreview}>
+              <span
+                style={{
+                  fontSize: `${fontSize}px`,
+                  fontFamily: `${font.family}`,
+                }}
+              >
+                {textInput || "කැමති දෙයක් ලියන්න."}
+              </span>
+            </div>
+          )}
         </div>
       </Link>
       <div

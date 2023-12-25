@@ -45,17 +45,29 @@ function PackCard({ packName, textInput, fontSize }) {
       <Link to={"/fonts/packs/" + pack.name}>
         <div className={styles.packCardContainer}>
           <span className={styles.packName}>{pack.packName}</span>
-
-          <div className={styles.packPreview}>
-            <span
-              style={{
-                fontSize: `${fontSize}px`,
-                fontFamily: fontFamily,
-              }}
-            >
-              {textInput || "leu;s fohla ,shkak'"}
-            </span>
-          </div>
+          {pack.packType === "unicode" ? (
+            <div className={styles.packPreview}>
+              <span
+                style={{
+                  fontSize: `${fontSize}px`,
+                  fontFamily: fontFamily,
+                }}
+              >
+                {textInput || "leu;s fohla ,shkak'"}
+              </span>
+            </div>
+          ) : (
+            <div className={styles.packPreview}>
+              <span
+                style={{
+                  fontSize: `${fontSize}px`,
+                  fontFamily: fontFamily,
+                }}
+              >
+                {textInput || "කැමති දෙයක් ලියන්න."}
+              </span>
+            </div>
+          )}
         </div>
       </Link>
       <div className={styles.button}>

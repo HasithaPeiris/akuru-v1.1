@@ -74,3 +74,24 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Abaya Libre";
+  src: url("./Abhaya-Libre.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif Sinhala";
+  src: url("./Noto-Serif-Sinhala.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yaldevi";
+  src: url("./Yaldevi.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

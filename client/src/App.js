@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import FontPreview from "./pages/fontPreview/FontPreview";
 import FontPackPreview from "./pages/fontPackPreview/FontPackPreview";
-import FontsPage from "./pages/fontsPage/FontsPage";
+import FontsPage from "./pages/fontsPageClone/FontsPage";
 import FontCard from "./components/fontCard/FontCard";
 import Converter from "./pages/converter/Converter";
 import PackCard from "./components/packCard/PackCard";

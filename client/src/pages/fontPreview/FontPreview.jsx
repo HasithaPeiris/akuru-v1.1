@@ -61,8 +61,10 @@ function FontPreview() {
     <div className={styles.fontPreview}>
       <div className={styles.fontPreviewContainer}>
         <div className={styles.nameSection}>
-          <span className={styles.fontName}>{font.family}</span>
-
+          <div className={styles.title}>
+            <span className={styles.fontNameEn}>{font.family}</span>
+            <span className={styles.fontNameSi}> ({font.phonetic})</span>
+          </div>
           <button
             className={styles.downloadButton}
             onClick={handleDownload}
@@ -76,24 +78,43 @@ function FontPreview() {
           </button>
         </div>
 
-        <div className={styles.previewBox}>
-          <p
-            style={{ fontSize: `${fontSize}px`, fontFamily: `${font.family}` }}
-          >
-            {textInput || "leu;s fohla ,shkak'"}
-          </p>
-        </div>
-
-        <InputSection onInputChange={handleInputChange} initialFontSize={44} />
+        {font.fontType === "unicode" ? (
+          <div className={styles.previewBox}>
+            <p
+              style={{
+                fontSize: `${fontSize}px`,
+                fontFamily: `${font.family}`,
+              }}
+            >
+              {textInput || "leu;s fohla ,shkak'"}
+            </p>
+          </div>
+        ) : (
+          <div className={styles.previewBox}>
+            <p
+              style={{
+                fontSize: `${fontSize}px`,
+                fontFamily: `${font.family}`,
+              }}
+            >
+              {textInput || "කැමති දෙයක් ලියන්න."}
+            </p>
+          </div>
+        )}
+        <InputSection
+          onInputChange={handleInputChange}
+          initialFontSize={44}
+          filterType={font.fontType}
+        />
 
         <dev className={styles.bodyContent}>
           <dev className={styles.alphabet}>
-            <Alphabet fontFamily={font.family} />
-            <Symbols fontFamily={font.family} />
+            <Alphabet fontFamily={font.family} fontType={font.fontType} />
+            <Symbols fontFamily={font.family} fontType={font.fontType} />
           </dev>
 
           <dev className={styles.paragraph}>
-            <Paragraph fontFamily={font.family} />
+            <Paragraph fontFamily={font.family} fontType={font.fontType} />
           </dev>
         </dev>
         <PackInfo />
