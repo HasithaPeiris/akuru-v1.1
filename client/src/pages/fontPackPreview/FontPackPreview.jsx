@@ -98,7 +98,11 @@ function FontPackPreview() {
           </button>
         </div>
 
-        <InputSection onInputChange={handleInputChange} initialFontSize={24} />
+        <InputSection
+          onInputChange={handleInputChange}
+          initialFontSize={24}
+          filterType={pack.packType}
+        />
 
         <dev className={styles.bodyContent}>
           <dev className={styles.fonts}>

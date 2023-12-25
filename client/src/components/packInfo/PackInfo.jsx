@@ -48,11 +48,12 @@ function PackInfo({ name }) {
   return (
     <div className={styles.packInfo}>
       <div className={styles.packInfoContainer}>
-        by: <span className={styles.author}>{pack.author}</span>
+        by: <span className={styles.author}>{pack.author || font.author}</span>
         <div className={styles.description}>
-          <p>{pack.description}</p>
+          <p>{pack.description || font.description}</p>
         </div>
-        License: <span className={styles.license}>{pack.license}</span>
+        License:{" "}
+        <span className={styles.license}>{pack.license || font.license}</span>
       </div>
     </div>
   );

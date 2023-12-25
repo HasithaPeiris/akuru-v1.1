@@ -65,20 +65,28 @@ function InputSection({ onInputChange, initialFontSize, filterType }) {
 
   // input section - save state of the input
   useEffect(() => {
-    const savedTextInput = localStorage.getItem("textInput");
-    const savedInput = localStorage.getItem("input");
+    let savedTextInput = localStorage.getItem("textInput");
+    let savedInput = localStorage.getItem("input");
     if (savedTextInput) {
-      setText(savedTextInput);
       if (textInputRef.current) {
         textInputRef.current.value = savedInput;
       }
+
+      // set input value based on filter type
+      if (filterType === "unicode") {
+        savedTextInput = unicodeConverter(savedInput);
+      } else {
+        savedTextInput = singlishToUnicode(savedInput);
+      }
+
+      setText(savedTextInput);
 
       // Notify the parent component about the initial values
       if (onInputChange) {
         onInputChange(savedTextInput, fontSize);
       }
     }
-  }, [onInputChange, fontSize]);
+  }, [onInputChange, fontSize, filterType]);
 
   return (
     <div className={styles.inputSection}>

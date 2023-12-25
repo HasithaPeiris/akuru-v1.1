@@ -117,7 +117,7 @@ function FontPreview() {
             <Paragraph fontFamily={font.family} fontType={font.fontType} />
           </dev>
         </dev>
-        <PackInfo />
+        <PackInfo name={font.name} />
       </div>
     </div>
   );
