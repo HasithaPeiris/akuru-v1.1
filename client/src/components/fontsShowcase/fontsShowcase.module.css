@@ -12,14 +12,15 @@
   overflow: hidden;
 }
 
-.ShowcaseImages {
+.ShowcaseFonts {
   display: flex;
   animation: moveImages 30s linear infinite;
   align-items: center;
 }
 
-.showcaseImage {
-  max-width: 80px;
+.showcaseFont {
+  font-size: 30px;
+  color: #555;
   height: auto;
   margin-right: 50px;
 }

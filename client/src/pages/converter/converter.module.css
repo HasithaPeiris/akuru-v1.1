@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "FM Abhaya";
+  src: local("FMAbhaya"), url("../../fonts/FM-Bindumathi.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.converterContainer {
+  display: flex;
+  align-items: center;
+  margin: 50px auto;
+  width: 50%;
+}
+
+.convertBoxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.inputBox,
+.outputBox {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.inputBox textarea,
+.outputBox textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text-color);
+}
+
+.inputBox textarea {
+  font-family: "Abhaya Libre", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.outputBox textarea {
+  font-family: "FM Abhaya";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.inputBox:hover,
+.inputBox:focus,
+.outputBox:hover,
+.outputBox:focus {
+  border-color: var(--primary-color);
+}
+
+.textArea {
+  position: relative;
+  padding: 30px 30px 0 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Add these styles to your converter.module.css or create a new stylesheet */
+
+.switchButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

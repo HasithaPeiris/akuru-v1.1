@@ -27,21 +27,6 @@ function InputSection({ onInputChange, initialFontSize, filterType }) {
     localStorage.setItem("input", input);
   };
 
-  // input section - handle input
-  // const handleTextChange = (event) => {
-  //   const newText = event.target.value;
-  //   const newConvertedText = unicodeConverter(newText);
-  //   setText(newConvertedText);
-
-  //   // Batch the storage calls
-  //   saveToLocalStorage(newConvertedText, newText);
-
-  //   // Notify the parent component about the textInput change
-  //   if (onInputChange) {
-  //     onInputChange(newConvertedText, fontSize);
-  //   }
-  // };
-
   const handleTextChange = (event) => {
     const newText = event.target.value;
     let newConvertedText;

@@ -1,17 +1,21 @@
 import React from "react";
 import styles from "./fontsShowcase.module.css";
+import unicodeToDlManel from "../inputSection/unicodeToDlManel";
 
-function FontsShowcase({ showcaseImages }) {
+function FontsShowcase({ fonts }) {
   return (
     <div className={styles.ShowcaseContainer}>
-      <div className={styles.ShowcaseImages}>
-        {showcaseImages.map((image, index) => (
-          <img
-            className={styles.showcaseImage}
+      <div className={styles.ShowcaseFonts}>
+        {fonts.map((font, index) => (
+          <span
             key={index}
-            src={image}
-            alt={`Font ${index}`}
-          />
+            className={styles.showcaseFont}
+            style={{ fontFamily: font.family }}
+          >
+            {font.fontType === "unicode"
+              ? unicodeToDlManel(font.phonetic)
+              : font.phonetic}
+          </span>
         ))}
       </div>
     </div>

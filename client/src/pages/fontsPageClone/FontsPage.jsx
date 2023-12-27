@@ -3,7 +3,6 @@ import FontCard from "../../components/fontCard/FontCard";
 import PackCard from "../../components/packCard/PackCard";
 import { getFonts } from "../../redux/apiCalls/fontApiCalls";
 import { getPacks } from "../../redux/apiCalls/packApiCalls";
-import ShowcaseImages from "./showcaseImages";
 import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -106,15 +105,10 @@ function FontsPage() {
         <div className={styles.headerContainer}>
           <div className={styles.headerGroup}>
             <div className={styles.logo}>
-              <img className={styles.logoImg} src="./logo2.png" alt="akuru" />
-            </div>
-            <div className={styles.fontsSearch}>
-              <input
-                type="text"
-                className={styles.searchInput}
-                id="search-input"
-                placeholder="Search Fonts"
-                onChange={(e) => setQuery(e.target.value)}
+              <img
+                className={styles.logoImg}
+                src="/logo-black.svg"
+                alt="akuru"
               />
             </div>
           </div>
@@ -122,7 +116,7 @@ function FontsPage() {
       </div>
 
       <div className={styles.fontsShowcase}>
-        <FontsShowcase showcaseImages={ShowcaseImages} />
+        <FontsShowcase fonts={fonts} />
       </div>
 
       <div className={styles.fontsPageContainer}>
@@ -132,7 +126,7 @@ function FontsPage() {
           filterType={filterType}
         />
 
-        <div className={styles.switchButtons}>
+        <div className={styles.filters}>
           <div className={styles.packButtons}>
             <button
               className={currentView === "FONTS" ? styles.active : ""}
@@ -161,6 +155,16 @@ function FontsPage() {
             >
               LEGACY
             </button>
+          </div>
+
+          <div className={styles.fontsSearch}>
+            <input
+              type="text"
+              className={styles.searchInput}
+              id="search-input"
+              placeholder="Search Fonts"
+              onChange={(e) => setQuery(e.target.value)}
+            />
           </div>
         </div>
 

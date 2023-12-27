@@ -21,7 +21,7 @@ function App() {
               element={<FontPackPreview />}
             ></Route>
             <Route path="/fonts" element={<FontsPage />}></Route>
-            {/* <Route path="/converter" element={<Converter />}></Route> */}
+            <Route path="/converter" element={<Converter />}></Route>
             <Route path="/card" element={<FontCard />}></Route>
             <Route path="/pack-info" element={<PackInfo />}></Route>
             <Route path="/fonts/pack-card" element={<PackCard />}></Route>
