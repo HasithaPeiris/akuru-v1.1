@@ -7,9 +7,10 @@ import { getFonts } from "../../redux/apiCalls/fontApiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import PackInfo from "../../components/packInfo/PackInfo";
 import InputSection from "../../components/inputSection/InputSection";
-import { ClipLoader } from "react-spinners";
+import Loader from "../../components/loader/Loader";
 import JSZip from "jszip";
 import { downloadFontPack } from "../../download";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 
 function FontPackPreview() {
   const [pack, setPack] = useState({});
@@ -80,11 +81,7 @@ function FontPackPreview() {
 
   // Render loading spinner
   if (loading) {
-    return (
-      <div className={styles.loader}>
-        <ClipLoader color="#999" size={34} />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -94,7 +91,8 @@ function FontPackPreview() {
           <span className={styles.fontName}>{pack.packName}</span>
 
           <button className={styles.downloadButton} onClick={handleDownload}>
-            Download Pack
+            <CloudDownloadIcon style={{ marginRight: 10 }} />
+            DOWNLOAD PACK
           </button>
         </div>
 

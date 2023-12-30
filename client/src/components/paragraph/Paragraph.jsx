@@ -3,7 +3,7 @@ import styles from "./paragraph.module.css";
 
 function Paragraph({ fontFamily, fontType }) {
   const [fontSize, setFontSize] = useState(20);
-  const [fontWeight, setFontWeight] = useState("normal");
+  const [fontWeight, setFontWeight] = useState("");
 
   const handleFontSizeChange = (event) => {
     setFontSize(parseInt(event.target.value, 10));

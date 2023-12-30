@@ -8,7 +8,9 @@ import { publicRequest } from "../../requestMethods";
 import { downloadFont } from "../../download";
 import PackInfo from "../../components/packInfo/PackInfo";
 import InputSection from "../../components/inputSection/InputSection";
+import Loader from "../../components/loader/Loader";
 import { ClipLoader } from "react-spinners";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 
 function FontPreview() {
   const [fontSize, setFontSize] = useState(44);
@@ -50,11 +52,7 @@ function FontPreview() {
 
   // Render loading spinner
   if (loading) {
-    return (
-      <div className={styles.loader}>
-        <ClipLoader color="#999" size={34} />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -70,10 +68,11 @@ function FontPreview() {
             onClick={handleDownload}
             disabled={loading}
           >
+            <CloudDownloadIcon style={{ marginRight: 10 }} />
             {loading ? (
               <ClipLoader color="#ffffff" size={20} />
             ) : (
-              "Download Font"
+              "DOWNLOAD FONT"
             )}
           </button>
         </div>

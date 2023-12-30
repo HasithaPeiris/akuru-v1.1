@@ -1,14 +1,5 @@
-@import "../../globalStyles.module.css";
-
-.loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .fontPreview {
-  margin-top: 20px;
+  margin: 50px 0 100px 0;
 }
 
 .fontPreviewContainer {
@@ -20,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--primary-text-color);
 }
 
 .fontNameEn {
@@ -31,24 +23,27 @@
 }
 
 .downloadButton {
-  display: block;
-  background-color: #333;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  background-color: var(--foreground-color);
+  color: var(--secondary-text-color);
+  letter-spacing: var(--letter-spacing);
   border: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .downloadButton:hover {
-  background-color: #444;
+  background-color: var(--primary-color);
 }
 
 .previewBox {
   /* border: 1px solid #ccc; */
-  padding: 50px;
+  padding: 50px 0;
   margin: 20px 0;
   text-align: center;
+  color: var(--primary-text-color);
 }
 
 .bodyContent {
@@ -75,45 +70,33 @@
   flex-direction: column;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 768px) {
   .fontPreviewContainer {
     width: var(--mobile-container-width);
   }
 
   .nameSection {
     flex-direction: column;
+    gap: 20px;
   }
 
-  .fontName {
-    font-size: 32px;
+  .fontNameEn {
+    font-size: 30px;
+  }
+  .fontNameSi {
+    font-size: 20px;
   }
 
   .downloadButton {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
-    font-size: 14px;
-    width: 90%;
-    padding: 12px 0;
+    margin-bottom: 15px;
   }
 
-  .inputSection {
-    flex-direction: column;
-  }
-
-  .fontSizeSection {
-    width: 90%;
-  }
-
-  .inputBox {
-    width: 100%;
+  .previewBox {
+    padding: 30px 0;
   }
 
   .bodyContent {
     flex-direction: column;
-    margin-bottom: 90px;
   }
 
   .alphabet {

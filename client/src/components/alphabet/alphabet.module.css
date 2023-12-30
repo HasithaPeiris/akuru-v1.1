@@ -1,7 +1,5 @@
-@import "../../globalStyles.module.css";
-
 .table {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
 }
 
@@ -12,7 +10,7 @@
 
 .table th,
 .table td {
-  color: var(--primary-color);
+  color: var(--primary-text-color);
   padding: 10px;
   text-align: center;
   font-size: 28px;

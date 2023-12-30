@@ -1,5 +1,5 @@
 .table {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
 }
 
@@ -10,8 +10,7 @@
 
 .table th,
 .table td {
-  color: #333;
+  color: var(--primary-text-color);
   text-align: center;
   font-size: 28px;
-  /* border-bottom: 1px solid #ddd; */
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import unicodeConverter from "./unicodeConverter";
 import singlishToUnicode from "./singlishToUnicode";
 import styles from "./inputSection.module.css";
+import Slider from "@mui/material/Slider";
 
 function InputSection({ onInputChange, initialFontSize, filterType }) {
   const [fontSize, setFontSize] = useState(initialFontSize || 32);
@@ -86,7 +87,7 @@ function InputSection({ onInputChange, initialFontSize, filterType }) {
         />
       </div>
 
-      <div className={styles.fontSizeSection}>
+      {/* <div className={styles.fontSizeSection}>
         <span className={styles.fontSizeValue}>{fontSize}px</span>
         <input
           type="range"
@@ -96,6 +97,17 @@ function InputSection({ onInputChange, initialFontSize, filterType }) {
           max="100"
           value={fontSize}
           onChange={handleFontSizeChange}
+        />
+      </div> */}
+      <div className={styles.fontSizeSection}>
+        <span className={styles.fontSizeValue}>{fontSize}px</span>
+        <Slider
+          defaultValue={fontSize}
+          aria-label="Default"
+          onChange={handleFontSizeChange}
+          valueLabelDisplay="auto"
+          min={10}
+          max={100}
         />
       </div>
     </div>

@@ -8,7 +8,7 @@
 }
 
 .ShowcaseContainer {
-  margin-top: 30px;
+  margin-top: 50px;
   overflow: hidden;
 }
 
@@ -20,7 +20,18 @@
 
 .showcaseFont {
   font-size: 30px;
-  color: #555;
+  color: var(--light-text-color);
   height: auto;
   margin-right: 50px;
+}
+
+@media (max-width: 768px) {
+  .ShowcaseFonts {
+    animation: moveImages 15s linear infinite;
+  }
+
+  .ShowcaseContainer {
+    margin-top: 30px;
+    overflow: hidden;
+  }
 }

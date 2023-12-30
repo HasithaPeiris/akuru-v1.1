@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputSection from "../../components/inputSection/InputSection";
 import { ClipLoader } from "react-spinners";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Loader from "../../components/loader/Loader";
+import { FontDownload, WbAuto, Search } from "@mui/icons-material";
 
 function FontsPage() {
   const [query, setQuery] = useState("");
@@ -92,29 +96,11 @@ function FontsPage() {
 
   // Render loading spinner
   if (loading) {
-    return (
-      <div className={styles.loader}>
-        <ClipLoader color="#999" size={34} />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <div className={styles.fontsPage}>
-      <div className={styles.header}>
-        <div className={styles.headerContainer}>
-          <div className={styles.headerGroup}>
-            <div className={styles.logo}>
-              <img
-                className={styles.logoImg}
-                src="/logo-black.svg"
-                alt="akuru"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className={styles.fontsShowcase}>
         <FontsShowcase fonts={fonts} />
       </div>
@@ -127,42 +113,46 @@ function FontsPage() {
         />
 
         <div className={styles.filters}>
-          <div className={styles.packButtons}>
-            <button
-              className={currentView === "FONTS" ? styles.active : ""}
-              onClick={() => setCurrentView("FONTS")}
-            >
-              FONTS
-            </button>
-            <button
-              className={currentView === "PACKS" ? styles.active : ""}
-              onClick={() => setCurrentView("PACKS")}
-            >
-              PACKS
-            </button>
-          </div>
+          <div className={styles.buttonGroup}>
+            <div className={styles.packButtons}>
+              <button
+                className={currentView === "FONTS" ? styles.active : ""}
+                onClick={() => setCurrentView("FONTS")}
+              >
+                <FontDownload style={{ marginRight: 8 }} />
+                FONTS
+              </button>
+              <button
+                className={currentView === "PACKS" ? styles.active : ""}
+                onClick={() => setCurrentView("PACKS")}
+              >
+                <WbAuto style={{ marginRight: 8 }} />
+                PACKS
+              </button>
+            </div>
 
-          <div className={styles.filterButtons}>
-            <button
-              className={filterType === "unicode" ? styles.active : ""}
-              onClick={() => handleFilterButtonClick("unicode")}
-            >
-              UNICODE
-            </button>
-            <button
-              className={filterType === "legacy" ? styles.active : ""}
-              onClick={() => handleFilterButtonClick("legacy")}
-            >
-              LEGACY
-            </button>
+            <div className={styles.filterButtons}>
+              <button
+                className={filterType === "unicode" ? styles.active : ""}
+                onClick={() => handleFilterButtonClick("unicode")}
+              >
+                UNICODE
+              </button>
+              <button
+                className={filterType === "legacy" ? styles.active : ""}
+                onClick={() => handleFilterButtonClick("legacy")}
+              >
+                LEGACY
+              </button>
+            </div>
           </div>
-
           <div className={styles.fontsSearch}>
+            <Search />
             <input
               type="text"
               className={styles.searchInput}
               id="search-input"
-              placeholder="Search Fonts"
+              placeholder="Search Fonts & Packs..."
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>

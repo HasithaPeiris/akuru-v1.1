@@ -1,17 +1,23 @@
 .packCard {
   position: relative;
+  color: var(--primary-text-color);
 }
 
 .packCardContainer {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 10px;
 }
 
+.packCardContainer:hover {
+  background-color: var(--light-foreground-color);
+  transition: background-color 0.3s ease;
+}
+
 .packName {
   padding: 5px 10px;
-  border: 1px solid #555;
+  border: 1px solid var(--light-text-color);
   border-radius: 5px;
   font-size: 16px;
 }
@@ -25,7 +31,7 @@
   bottom: 10px;
   position: absolute;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -33,9 +39,9 @@
 
 .buttonIcon {
   font-size: 24px;
-  color: #555;
+  color: var(--foreground-color);
 }
 
 .button:hover {
-  background-color: #ccc;
+  background-color: var(--light-foreground-color);
 }

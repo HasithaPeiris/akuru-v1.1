@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./converter.module.css";
 import unicodeConverter from "./unicodeConverter";
 import singlishToUnicode from "./singlishToUnicode";
+import { ContentCopy, Done, Clear } from "@mui/icons-material";
+import Tooltip from "@mui/material/Tooltip";
 
 function Converter() {
   const [singlishText, setSinglishText] = useState("");
   const [unicodeText, setUnicodeText] = useState("");
   const [showUnicodeOutput, setShowUnicodeOutput] = useState(true);
+  const [copyIcon, setCopyIcon] = useState("default");
 
   // make reference for input
   const textInputRef = useRef(null);
@@ -57,6 +60,10 @@ function Converter() {
   const handleCopyToClipboard = () => {
     const textToCopy = showUnicodeOutput ? unicodeText : singlishText;
 
+    if (!textToCopy) {
+      return;
+    }
+
     const textarea = document.createElement("textarea");
     textarea.value = textToCopy;
 
@@ -67,7 +74,21 @@ function Converter() {
 
     document.body.removeChild(textarea);
 
-    alert("Text copied to clipboard!");
+    setCopyIcon("copied");
+
+    setTimeout(() => {
+      setCopyIcon("default");
+    }, 2000);
+  };
+
+  const handleClearText = () => {
+    setSinglishText("");
+    setUnicodeText("");
+    if (textInputRef.current) {
+      textInputRef.current.value = "";
+    }
+
+    saveToLocalStorage("", "", "");
   };
 
   return (
@@ -89,7 +110,7 @@ function Converter() {
             <textarea
               id="convert-input"
               placeholder={
-                showUnicodeOutput ? "hqksfldaâ j,ska¡¡¡" : "Singlish වලින්..."
+                showUnicodeOutput ? "hqksfldaâ j,ska¡¡¡" : "ලෙගසි වලින්..."
               }
               value={showUnicodeOutput ? unicodeText : singlishText}
               style={
@@ -102,24 +123,36 @@ function Converter() {
           </div>
         </div>
 
-        <div className={styles.switchButtons}>
-          <button
-            className={showUnicodeOutput ? styles.activeButton : styles.button}
-            onClick={() => handleSwitchChange("UNICODE")}
-          >
-            UNICODE
-          </button>
-          <button
-            className={!showUnicodeOutput ? styles.activeButton : styles.button}
-            onClick={() => handleSwitchChange("LEGACY")}
-          >
-            LEGACY
-          </button>
+        <div className={styles.toolbar}>
+          <div className={styles.switchButtons}>
+            <button
+              className={
+                showUnicodeOutput ? styles.activeButton : styles.button
+              }
+              onClick={() => handleSwitchChange("UNICODE")}
+            >
+              UNICODE
+            </button>
+            <button
+              className={
+                !showUnicodeOutput ? styles.activeButton : styles.button
+              }
+              onClick={() => handleSwitchChange("LEGACY")}
+            >
+              LEGACY
+            </button>
+            <Tooltip title="Copy to Clipboard" arrow>
+              <button className={styles.button} onClick={handleCopyToClipboard}>
+                {copyIcon === "default" ? <ContentCopy /> : <Done />}
+              </button>
+            </Tooltip>
+            <Tooltip title="Clear all text" arrow>
+              <button className={styles.button} onClick={handleClearText}>
+                <Clear />
+              </button>
+            </Tooltip>
+          </div>
         </div>
-
-        <button className={styles.button} onClick={handleCopyToClipboard}>
-          Copy to Clipboard
-        </button>
       </div>
     </div>
   );
