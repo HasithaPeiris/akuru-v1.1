@@ -19,8 +19,13 @@ function PackCard({ packName, textInput, fontSize }) {
 
         // Extract the first font from the fonts array
         if (res.data.fonts && res.data.fonts.length > 0) {
-          const firstFont = res.data.fonts[0].replace(/-/g, " ");
-          setFontFamily(firstFont);
+          if (res.data.name === "apex-fonts") {
+            const firstFont = res.data.fonts[0];
+            setFontFamily(firstFont);
+          } else {
+            const firstFont = res.data.fonts[0].replace(/-/g, " ");
+            setFontFamily(firstFont);
+          }
         }
       } catch (error) {
         console.error("Error fetching pack:", error);

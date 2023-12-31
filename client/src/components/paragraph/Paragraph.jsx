@@ -49,14 +49,13 @@ function Paragraph({ fontFamily, fontType }) {
                 fontWeight,
               }}
             >
-              ;jo hï mqoa.,hl= wh;ajk rfÜ foaYmd,k" kS;suh fyda cd;Hka;r
-              ;;a;ajhka lsisÿ úfYaIhla o ta rfÜ iajdëk" Ndrldr" wiajdëk wd§ ljr
-              ;;a;ajhla úfYaIhla o fkdue;sj fï ysñlï Tyq i;= jkafkah¡ iEu
-              mqoa.,fhl=gu Ôj;aùug;a ksoyiaj is;Sug;a fm!oa.,sl wdrlaIdjg;a
-              ysñlï we;af;ah¡ lsisu mqoa.,fhl= jy,a lfuys fyda nkaOkfhys
-              ^odi;ajfhys& fkd/|úh hq;=h¡ iEu wdldrhlu jy,a yd jy,alu ;ykï
-              jkafkah¡ lsisu mqoa.,hl= jO ysxidjg fyda lDDr" wudkqIsl my;a fyda
-              oඬqjulg fyda Ndckh fkdl hq;=h¡
+              isxy, NdIdj hkq f,dalfha we;s w,xldru NdIdjka w;=ßka tlls' tfukau
+              f,dalfha w,xldru wl=re w;r isxy, wl=re y;rjk ia:dkh ,ndf.k we;'
+              wfkl=;a NdIdjkag idfmalaIj bf.kSug ;rula wmyiq neúka isxy, NdIdj
+              Ndú;dlrkafka b;du iqÆ msßila jqj;a fuh b;du;a jákd NdIdjls' isxy,
+              NdIdj f,dalfha m%p,s; lsÍug wka;¾cd,fha isxy, wl=re Ndú;h b;du
+              jeo.;a fõ' Tnf.a fjí wjä ks¾udK fyda wfkl=;a ks¾udK i|yd isxy,
+              wl=re o Ndú;d lsÍug fhduqjkak'
             </p>
           </div>
         ) : (
@@ -68,14 +67,13 @@ function Paragraph({ fontFamily, fontType }) {
                 fontWeight,
               }}
             >
-              තවද යම් පුද්ගලයකු අයත්වන රටේ දේශපාලන, නීතිමය හෝ ජාත්‍යන්තර
-              තත්ත්වයන් පිළිබඳ කිසිදු විශේෂයක් ද ඒ රටේ ස්වාධීන, භාරකාර, අස්වාධීන
-              ආදී කවර තත්ත්වයක් පිළිබඳ විශේෂයක් ද නොමැතිව මේ හිමිකම් ඔහු සතු
-              වන්නේය. සෑම පුද්ගලයෙකුටම ජීවත්වීමටත් නිදහස්ව සිතීමටත් පෞද්ගලික
-              ආරක්ෂාවටත් හිමිකම් ඇත්තේය. කිසිම පුද්ගලයෙකු වහල් කමෙහි හෝ
-              බන්ධනයෙහි නොරැඳවිය යුතුය. සෑම ආකාරයකම වහල් වෙළඳාම හා වහල්කම තහනම්
-              වන්නේය. කිසිම පුද්ගලයකු වධ හිංසාවට හෝ කෲර, අමානුෂික පහත්
-              සැළකිල්ලකට හෝ දඬුවමකට හෝ භාජනය නොකළ යුතුය.
+              සිංහල භාෂාව යනු ලෝකයේ ඇති අලංකාරම භාෂාවන් අතුරින් එකකි. එමෙන්ම
+              ලෝකයේ අලංකාරම අකුරු අතර සිංහල අකුරු හතරවන ස්ථානය ලබාගෙන ඇත.
+              අනෙකුත් භාෂාවන්ට සාපේක්ෂව ඉගෙනීමට තරමක් අපහසු බැවින් සිංහල භාෂාව
+              භාවිතාකරන්නේ ඉතාම සුලු පිරිසක් වුවත් මෙය ඉතාමත් වටිනා භාෂාවකි.
+              සිංහල භාෂාව ලෝකයේ ප්‍රචලිත කිරීමට අන්තර්ජාලයේ සිංහල අකුරු භාවිතය
+              ඉතාම වැදගත් වේ. ඔබගේ වෙබ් අවඩි නිර්මාණ හෝ අනෙකුත් නිර්මාණ සඳහා
+              සිංහල අකුරු ද භාවිතා කිරීමට යොමුවන්න.
             </p>
           </div>
         )}
