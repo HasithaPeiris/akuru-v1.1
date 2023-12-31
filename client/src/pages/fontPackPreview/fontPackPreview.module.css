@@ -1,5 +1,5 @@
 .fontPreview {
-  margin: 50px 0 100px 0;
+  padding: 50px 0 100px 0;
 }
 
 .fontPreviewContainer {
@@ -36,7 +36,7 @@
 
 .bodyContent {
   display: flex;
-  margin: 50px 0;
+  margin-top: 50px;
   width: 100%;
   align-items: flex-start;
   justify-content: space-between;

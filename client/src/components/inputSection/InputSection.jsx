@@ -87,18 +87,6 @@ function InputSection({ onInputChange, initialFontSize, filterType }) {
         />
       </div>
 
-      {/* <div className={styles.fontSizeSection}>
-        <span className={styles.fontSizeValue}>{fontSize}px</span>
-        <input
-          type="range"
-          className={styles.fontSize}
-          id="font-size"
-          min="10"
-          max="100"
-          value={fontSize}
-          onChange={handleFontSizeChange}
-        />
-      </div> */}
       <div className={styles.fontSizeSection}>
         <span className={styles.fontSizeValue}>{fontSize}px</span>
         <Slider

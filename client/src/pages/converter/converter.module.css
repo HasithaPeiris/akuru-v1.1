@@ -101,6 +101,17 @@ textArea::placeholder {
     justify-content: center;
   }
 
+  .switchButtons {
+    gap: 8px;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .switchButtons button {
+    margin: 0;
+    width: 100%;
+  }
+
   .inputBox textarea,
   .outputBox textarea {
     height: 200px;

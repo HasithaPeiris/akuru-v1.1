@@ -1,7 +1,7 @@
 .fontsPageContainer {
   width: var(--desktop-container-width);
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .filters {
@@ -84,30 +84,15 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
-.pagination button {
-  color: var(--light-text-color);
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
+.paginationControl {
+  color: var(--primary-text-color);
+  background-color: #cccccc;
+  padding: 5px;
   border-radius: 5px;
-  margin: 0 4px;
 }
-
-.pagination button:hover {
-  background-color: var(--light-text-color);
-  color: var(--secondary-text-color);
-}
-
-.pagination button.active {
-  background-color: var(--foreground-color);
-  color: var(--secondary-text-color);
-}
-
 @media (max-width: 768px) {
   .headerGroup {
     flex-direction: column;
@@ -120,6 +105,44 @@
   .filters {
     flex-direction: column;
     gap: 15px;
+  }
+
+  .buttonGroup {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .packButtons {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    padding: 10px 20px;
+    gap: 10px;
+    left: 0;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--light-foreground-color);
+  }
+
+  .packButtons button {
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filterButtons {
+    width: 100%;
+    gap: 10px;
+    justify-content: space-around;
+  }
+
+  .filterButtons button {
+    margin: 0;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
   }
 
   .fontsSearch {

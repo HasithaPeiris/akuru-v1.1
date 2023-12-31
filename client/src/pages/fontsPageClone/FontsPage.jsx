@@ -7,11 +7,9 @@ import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputSection from "../../components/inputSection/InputSection";
-import { ClipLoader } from "react-spinners";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Loader from "../../components/loader/Loader";
 import { FontDownload, WbAuto, Search } from "@mui/icons-material";
+import Pagination from "@mui/material/Pagination";
 
 function FontsPage() {
   const [query, setQuery] = useState("");
@@ -176,17 +174,16 @@ function FontsPage() {
               />
             ))}
 
-        {/* Pagination Controls */}
         <div className={styles.pagination}>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? styles.active : ""}
-            >
-              {index + 1}
-            </button>
-          ))}
+          <Pagination
+            className={styles.paginationControl}
+            count={totalPages}
+            page={currentPage}
+            onChange={(event, value) => handlePageChange(value)}
+            shape="rounded"
+            color="primary"
+            size="small"
+          />
         </div>
       </div>
     </div>
