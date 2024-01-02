@@ -1,0 +1,31 @@
+.aboutPage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 70px 0 100px 0;
+}
+
+.aboutSection,
+.teamSection,
+.visionSection {
+  margin-bottom: 30px;
+}
+
+.subHeaders {
+  color: var(--primary-text-color);
+}
+
+.para {
+  color: var(--light-text-color);
+  font-family: var(--sinhala-font-family);
+  font-size: 20px;
+}
+
+.featuredImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -12,6 +12,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { grey, blueGrey } from "@mui/material/colors";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import SideGraphic from "./components/sideGraphic/SideGraphic";
+import TypeWriter from "./components/typeWriter/TypeWriter";
+import About from "./pages/about/About";
 
 const theme = createTheme({
   palette: {
@@ -46,8 +49,10 @@ function App() {
                 <Route path="/pack-info" element={<PackInfo />}></Route>
                 <Route path="/fonts/pack-card" element={<PackCard />}></Route>
                 <Route path="/input-section" element={<InputSection />}></Route>
+                <Route path="/about" element={<About />} />
               </Routes>
             </div>
+            <SideGraphic />
             <Footer />
           </div>
         </Router>

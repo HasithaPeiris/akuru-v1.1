@@ -12,7 +12,7 @@ function Footer() {
           <span className={styles.logoName}>අකුරු</span>
         </div>
         <p className={styles.copyright}>
-          &copy; 2023 Akuru. All Rights Reserved.
+          &copy; 2024 Akuru. All Rights Reserved.
         </p>
         <div className={styles.socialIcons}>
           <a href="#" className={styles.icon}>

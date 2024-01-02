@@ -6,7 +6,8 @@
 
 body {
   font-family: var(--english-font-family);
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
+  background-image: var(--background-image);
   /* transition: background-color 0.3s ease; */
 }
 
@@ -19,7 +20,8 @@ body {
 
   /* background colors */
   --primary-color: #333333;
-  --background-color: #ffffff;
+  --background-color: #f4f4f4;
+  --background-image: linear-gradient(60deg, #fdfbfb 0%, #e7e7e7 100%);
   --foreground-color: #444444;
   --light-foreground-color: #e7e7e7;
 
@@ -29,8 +31,10 @@ body {
   --light-text-color: #555555;
   --link-color: #9aabff;
 
+  --hover-opacity: rgba(231, 231, 231, 0.5);
+
   /* border colors */
-  --border-color: #cccccc;
+  --border-color: #b4b4b4;
 
   /* typo */
   --font-family: "Arial", sans-serif;
@@ -47,14 +51,17 @@ body {
 [data-theme="dark"] {
   /* background colors */
   --primary-color: #f2f2f2;
-  --background-color: #222222;
+  --background-color: #121212;
+  --background-image: linear-gradient(60deg, #121212 0%, #222222 100%);
   --foreground-color: #cccccc;
-  --light-foreground-color: #333333;
+  --light-foreground-color: #222222;
 
   /* text colors */
   --primary-text-color: #f2f2f2;
   --secondary-text-color: #222222;
   --light-text-color: #dddddd;
+
+  --hover-opacity: rgba(85, 85, 85, 0.25);
 
   /* border colors */
   --border-color: #999999;
