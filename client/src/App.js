@@ -15,6 +15,7 @@ import Footer from "./components/footer/Footer";
 import SideGraphic from "./components/sideGraphic/SideGraphic";
 import TypeWriter from "./components/typeWriter/TypeWriter";
 import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
 
 const theme = createTheme({
   palette: {
@@ -50,6 +51,7 @@ function App() {
                 <Route path="/fonts/pack-card" element={<PackCard />}></Route>
                 <Route path="/input-section" element={<InputSection />}></Route>
                 <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </div>
             <SideGraphic />

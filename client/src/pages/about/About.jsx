@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./about.module.css";
-import FeaturedImage from "./image.png";
+import FeaturedImage from "./akuru-kathawa.svg";
 
 function About() {
   return (
@@ -20,13 +20,16 @@ function About() {
           illustrator, photoshop වගේ softwares වල සිංහල අකුරු ටයිප් කරද්දි
           unicode දැනගෙන ඉන්න වුනා. හැබැයි මම ඒකට විසඳුමක් හොයද්දි online සිංහල
           unicode converters කිහිපයක්ම හොයාගන්න පුළුවන් වුන නිසා ඒ ප්‍රශ්නෙ
-          යම්තාක් දුරකට විසඳුනා. දෙවෙනි ප්‍රශ්නෙ තමයි අපේ projects වලට හරියටම
-          සෙට් වෙන සිංහල අකුරු හොයාගන්න එක. Internet එකේ තැන් තැන් වලින් අකුරු
-          හොයාගන්න පුළුවන් උනත්, අපි අකුරු download කරන්න කලින් test කරන්න
-          පුළුවන් තැනක් හොයාගන්න බැරිවුනා. ඔයාලා දැකලා ඇති Google Fonts සහ Font
-          Space වගේ වෙබ් අඩවි වල අපිට කැමති දෙයක් ටයිප් කරලා font එක test කරලා
-          බලන්න පුළුවන් වගේම අදාළ fonts වල background information එහෙමත් හොඳට
-          බලාගන්න පුළුවන්. <br />
+          යම්තාක් දුරකට විසඳුනා.
+          <br />
+          <br />
+          දෙවෙනි ප්‍රශ්නෙ තමයි අපේ projects වලට හරියටම සෙට් වෙන සිංහල අකුරු
+          හොයාගන්න එක. Internet එකේ තැන් තැන් වලින් අකුරු හොයාගන්න පුළුවන් උනත්,
+          අපි අකුරු download කරන්න කලින් test කරන්න පුළුවන් තැනක් හොයාගන්න
+          බැරිවුනා. ඔයාලා දැකලා ඇති Google Fonts සහ Font Space වගේ වෙබ් අඩවි වල
+          අපිට කැමති දෙයක් ටයිප් කරලා font එක test කරලා බලන්න පුළුවන් වගේම අදාළ
+          fonts වල background information එහෙමත් හොඳට බලාගන්න පුළුවන්.
+          <br />
           <br />
           ඉතින් සිංහල අකුරුත් එක්ක වැඩ කරද්දි මට ආපු මේ ප්‍රධාන ප්‍රශ්න දෙකට
           විසඳුමක් විදිහට තමයි අකුරු වෙබ් අඩවිය හදන්න තීරණය කලේ. කලින් කිව්වා
