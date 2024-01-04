@@ -6,9 +6,7 @@
 
 body {
   font-family: var(--english-font-family);
-  /* background-color: var(--background-color); */
   background-image: var(--background-image);
-  /* transition: background-color 0.3s ease; */
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Noto+Serif+Sinhala&display=swap");
@@ -29,7 +27,7 @@ body {
   --primary-text-color: #222222;
   --secondary-text-color: #ffffff;
   --light-text-color: #555555;
-  --link-color: #525e9a;
+  --link-color: #4366a5;
 
   --hover-opacity: rgba(231, 231, 231, 0.5);
 

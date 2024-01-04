@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./contact.module.css";
-import ContactSVG from "./contact.svg";
 import {
   Facebook,
   LinkedIn,
   Instagram,
   MailOutline,
   PersonAddAltOutlined,
-  PhoneAndroidOutlined,
+  Language,
 } from "@mui/icons-material";
 
 function Contact() {
@@ -35,9 +34,9 @@ function Contact() {
             <span className={styles.email}>designbyhasitha@gmail.com</span>
           </div>
           <div className={styles.card}>
-            <PhoneAndroidOutlined className={styles.cardIcon} />
-            <h3 className={styles.name}>Phone</h3>
-            <span className={styles.email}>+94 71 4586 262</span>
+            <Language className={styles.cardIcon} />
+            <h3 className={styles.name}>Website</h3>
+            <span className={styles.email}>www.hasithapeiris.com</span>
           </div>
         </div>
       </div>

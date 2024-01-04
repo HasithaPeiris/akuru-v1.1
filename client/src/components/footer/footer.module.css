@@ -21,6 +21,10 @@
   font-weight: 600;
 }
 
+.logoName:hover {
+  color: var(--foreground-color);
+}
+
 .socialIcons {
   display: flex;
   gap: 10px;

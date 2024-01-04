@@ -3,7 +3,6 @@ import FontCard from "../../components/fontCard/FontCard";
 import PackCard from "../../components/packCard/PackCard";
 import { getFonts } from "../../redux/apiCalls/fontApiCalls";
 import { getPacks } from "../../redux/apiCalls/packApiCalls";
-import ShowcaseImages from "./showcaseImages";
 import FontsShowcase from "../../components/fontsShowcase/FontsShowcase";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -108,7 +107,7 @@ function FontsPage() {
       </div>
 
       <div className={styles.fontsShowcase}>
-        <FontsShowcase showcaseImages={ShowcaseImages} />
+        <FontsShowcase />
       </div>
 
       <div className={styles.fontsPageContainer}>
