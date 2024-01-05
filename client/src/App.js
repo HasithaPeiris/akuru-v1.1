@@ -1,4 +1,5 @@
 import styles from "./App.module.css";
+import ReactGA from "react-ga4";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   About,
@@ -11,6 +12,7 @@ import {
 import { Header, Footer, SideGraphic } from "./components/index";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { grey, blueGrey } from "@mui/material/colors";
+import { useEffect } from "react";
 
 const theme = createTheme({
   palette: {
@@ -23,6 +25,11 @@ const theme = createTheme({
 });
 
 function App() {
+  useEffect(() => {
+    ReactGA.initialize("G-0BRKR6BTDR");
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Home" });
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>

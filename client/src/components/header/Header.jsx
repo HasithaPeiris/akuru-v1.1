@@ -3,12 +3,20 @@ import styles from "./header.module.css";
 import { Menu, Close, Assignment } from "@mui/icons-material";
 import DarkMode from "../darkMode/DarkMode";
 import { Link, NavLink } from "react-router-dom";
+import ReactGA from "react-ga4";
 
 function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+  };
+
+  const clickHandler = () => {
+    ReactGA.event({
+      category: "Button",
+      action: "Go to converter",
+    });
   };
   return (
     <header className={styles.mainHeader}>
@@ -47,7 +55,7 @@ function Header() {
           </NavLink>
           <DarkMode />
           <Link to="/converter">
-            <button className={styles.navButton}>
+            <button onClick={clickHandler} className={styles.navButton}>
               <Assignment style={{ marginRight: 5 }} />
               CONVERTER
             </button>

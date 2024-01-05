@@ -6,7 +6,7 @@
 
 body {
   font-family: var(--english-font-family);
-  background-image: var(--background-image);
+  background-color: var(--background-color);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Noto+Serif+Sinhala&display=swap");
@@ -18,8 +18,7 @@ body {
 
   /* background colors */
   --primary-color: #333333;
-  --background-color: #f4f4f4;
-  --background-image: linear-gradient(60deg, #fdfbfb 0%, #e7e7e7 100%);
+  --background-color: #fdfbfb;
   --foreground-color: #444444;
   --light-foreground-color: #e7e7e7;
 
@@ -32,7 +31,7 @@ body {
   --hover-opacity: rgba(231, 231, 231, 0.5);
 
   /* border colors */
-  --border-color: #b4b4b4;
+  --border-color: #ababab;
 
   /* typo */
   --font-family: "Arial", sans-serif;
@@ -49,14 +48,13 @@ body {
 [data-theme="dark"] {
   /* background colors */
   --primary-color: #f2f2f2;
-  --background-color: #121212;
-  --background-image: linear-gradient(60deg, #151515 0%, #151515 100%);
+  --background-color: #202020;
   --foreground-color: #cccccc;
-  --light-foreground-color: #222222;
+  --light-foreground-color: #303030;
 
   /* text colors */
   --primary-text-color: #f2f2f2;
-  --secondary-text-color: #222222;
+  --secondary-text-color: #202020;
   --light-text-color: #dddddd;
 
   --hover-opacity: rgba(85, 85, 85, 0.25);

@@ -12,18 +12,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--primary-text-color);
 }
 
-.logoName {
+.logo {
   font-size: 40px;
   font-family: var(--logo-font-family);
   font-weight: 600;
-  transition: color 0.3s ease;
+  color: var(--foreground-color);
+  transition: all 0.3s ease;
 }
 
-.logoName:hover {
-  color: var(--foreground-color);
+.logo:hover {
+  transform: scale(1.1);
 }
 
 .nav-links {
@@ -46,14 +46,17 @@
 
 .navButton {
   padding: 7px 10px;
-  background-color: var(--background-color);
-  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+  color: var(--background-color);
   letter-spacing: var(--letter-spacing);
   border-radius: 5px;
   display: flex;
   align-items: center;
-  transition: background-color 0.3s ease;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  transform: scale(1.1);
 }
 
 .menuButton {

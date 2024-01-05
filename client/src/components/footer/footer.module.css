@@ -15,14 +15,15 @@
   align-items: center;
 }
 
-.logoName {
+.logo {
   font-size: 40px;
   font-family: var(--logo-font-family);
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.logoName:hover {
-  color: var(--foreground-color);
+.logo:hover {
+  transform: scale(1.1);
 }
 
 .socialIcons {
