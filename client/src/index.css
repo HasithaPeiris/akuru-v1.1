@@ -4,6 +4,10 @@
 
 @import "../src/fonts/fonts.module.css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--english-font-family);
   background-color: var(--background-color);
@@ -41,7 +45,9 @@ body {
 
   /* spacing */
   --desktop-container-width: 70%;
+  --desktop-container-padding: 20px;
   --mobile-container-width: 90%;
+  --mobile-container-padding: 10px;
   --letter-spacing: 1.5px;
 }
 

@@ -14,6 +14,26 @@ function Converter() {
   // make reference for input
   const textInputRef = useRef(null);
 
+  const textareaRef = useRef();
+
+  useEffect(() => {
+    adjustTextareaHeight();
+    scrollToBottom();
+  }, [showUnicodeOutput, unicodeText, singlishText]);
+
+  const adjustTextareaHeight = () => {
+    const textarea = textareaRef.current;
+
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo(0, document.body.scrollHeight);
+  };
+
   // save to local storage
   const saveToLocalStorage = (value, singlishText, unicodeText) => {
     localStorage.setItem("value", value);
@@ -94,17 +114,18 @@ function Converter() {
   return (
     <div className={styles.converterContainer}>
       <div className={styles.convertBoxes}>
-        <div className={styles.inputBox}>
-          <div className={styles.textArea}>
-            <textarea
-              id="convert-input"
-              placeholder="Singlish වලින් ලියන්න..."
-              ref={textInputRef}
-              onChange={handleSinglishConversion}
-            />
+        <div className={styles.stickyBox}>
+          <div className={styles.inputBox}>
+            <div className={styles.textArea}>
+              <textarea
+                id="convert-input"
+                placeholder="Singlish වලින් ලියන්න..."
+                ref={textInputRef}
+                onChange={handleSinglishConversion}
+              />
+            </div>
           </div>
         </div>
-
         <div className={styles.outputBox}>
           <div className={styles.textArea}>
             <textarea
@@ -119,6 +140,11 @@ function Converter() {
                   : { fontFamily: "Abhaya Libre" }
               }
               readOnly
+              ref={textareaRef}
+              onChange={() => {
+                adjustTextareaHeight();
+                scrollToBottom();
+              }}
             />
           </div>
         </div>

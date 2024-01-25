@@ -60,7 +60,14 @@ function FontPackPreview() {
 
         if (font && font.fontFile) {
           const fontFileName = `${fontName.replace(/\s+/g, "-")}.ttf`;
-          zip.file(fontFileName, font.fontFile, { binary: true });
+
+          // Fetch font content as array buffer
+          const fontContent = await fetch(font.fontFile).then((response) =>
+            response.arrayBuffer()
+          );
+
+          // Add font to the zip archive
+          zip.file(fontFileName, fontContent, { binary: true });
         }
       }
 
