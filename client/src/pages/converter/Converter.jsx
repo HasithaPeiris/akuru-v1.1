@@ -108,7 +108,7 @@ function Converter() {
         }
       }
     }
-  }, [showUnicodeOutput]);
+  }, [showUnicodeOutput, showSinglishInput]);
 
   const handleSwitchChange = (outputType) => {
     setShowUnicodeOutput(outputType === "UNICODE");
