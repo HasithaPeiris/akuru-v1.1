@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./converter.module.css";
 import unicodeConverter from "./unicodeConverter";
 import singlishToUnicode from "./singlishToUnicode";
+import dlManelToUnicode from "./dlManelToUnicode";
 import { ContentCopy, Done, Clear } from "@mui/icons-material";
 import Tooltip from "@mui/material/Tooltip";
+import wijesekaraConverter from "./wijesekaraConverter";
 
 function Converter() {
   const [singlishText, setSinglishText] = useState("");
   const [unicodeText, setUnicodeText] = useState("");
   const [showUnicodeOutput, setShowUnicodeOutput] = useState(true);
+  const [showSinglishInput, setShowSinglishInput] = useState(true);
   const [copyIcon, setCopyIcon] = useState("default");
 
   // make reference for input
@@ -35,46 +38,84 @@ function Converter() {
   };
 
   // save to local storage
-  const saveToLocalStorage = (value, singlishText, unicodeText) => {
+  const saveToLocalStorage = (
+    value,
+    singlishText,
+    unicodeText,
+    wijesekaraText,
+    convertedWijeText
+  ) => {
     localStorage.setItem("value", value);
     localStorage.setItem("singlishText", singlishText);
     localStorage.setItem("unicodeText", unicodeText);
+    localStorage.setItem("wijesekaraText", wijesekaraText);
+    localStorage.setItem("convertedWijeText", convertedWijeText);
   };
 
   const handleSinglishConversion = (event) => {
     const value = event.target.value;
     const newSinhalaText = singlishToUnicode(value);
     const newUnicodeText = unicodeConverter(value);
+    const newWijesekaraText = dlManelToUnicode(value);
+    const newConvertedWijeText = wijesekaraConverter(newWijesekaraText);
 
-    if (showUnicodeOutput) {
-      setUnicodeText(newUnicodeText);
+    if (showSinglishInput) {
+      if (showUnicodeOutput) {
+        setUnicodeText(newUnicodeText);
+      } else {
+        setSinglishText(newSinhalaText);
+      }
     } else {
-      setSinglishText(newSinhalaText);
+      if (showUnicodeOutput) {
+        setUnicodeText(newConvertedWijeText);
+      } else {
+        setSinglishText(newWijesekaraText);
+      }
     }
 
     // Batch the storage calls
-    saveToLocalStorage(value, newSinhalaText, newUnicodeText);
+    saveToLocalStorage(
+      value,
+      newSinhalaText,
+      newUnicodeText,
+      newWijesekaraText,
+      newConvertedWijeText
+    );
   };
 
   useEffect(() => {
     let savedValue = localStorage.getItem("value");
     let savedSinglishText = localStorage.getItem("singlishText");
     let savedUnicodeText = localStorage.getItem("unicodeText");
+    let savedWijesekaraText = localStorage.getItem("wijesekaraText");
+    let savedConvertedWijeText = localStorage.getItem("convertedWijeText");
     if (savedSinglishText || savedUnicodeText) {
       if (textInputRef.current) {
         textInputRef.current.value = savedValue;
       }
 
-      if (showUnicodeOutput) {
-        setUnicodeText(savedUnicodeText);
+      if (showSinglishInput) {
+        if (showUnicodeOutput) {
+          setUnicodeText(savedUnicodeText);
+        } else {
+          setSinglishText(savedSinglishText);
+        }
       } else {
-        setSinglishText(savedSinglishText);
+        if (showUnicodeOutput) {
+          setUnicodeText(savedConvertedWijeText);
+        } else {
+          setSinglishText(savedWijesekaraText);
+        }
       }
     }
   }, [showUnicodeOutput]);
 
   const handleSwitchChange = (outputType) => {
     setShowUnicodeOutput(outputType === "UNICODE");
+  };
+
+  const handleInputSwitchChange = (inputType) => {
+    setShowSinglishInput(inputType === "SINGLISH");
   };
 
   const handleCopyToClipboard = () => {
@@ -115,6 +156,26 @@ function Converter() {
     <div className={styles.converterContainer}>
       <div className={styles.convertBoxes}>
         <div className={styles.stickyBox}>
+          <div className={styles.toolbar} style={{ marginBottom: 10 }}>
+            <div className={styles.switchButtons}>
+              <button
+                className={
+                  showSinglishInput ? styles.activeButton : styles.button
+                }
+                onClick={() => handleInputSwitchChange("SINGLISH")}
+              >
+                SIN
+              </button>
+              <button
+                className={
+                  !showSinglishInput ? styles.activeButton : styles.button
+                }
+                onClick={() => handleInputSwitchChange("WIJESEKARA")}
+              >
+                WIJE
+              </button>
+            </div>
+          </div>
           <div className={styles.inputBox}>
             <div className={styles.textArea}>
               <textarea
@@ -149,7 +210,7 @@ function Converter() {
           </div>
         </div>
 
-        <div className={styles.toolbar}>
+        <div className={styles.toolbar} style={{ marginTop: 10 }}>
           <div className={styles.switchButtons}>
             <button
               className={
